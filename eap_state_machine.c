@@ -82,7 +82,7 @@ RESULT eap_state_machine_init() {
 void eap_state_machine_destroy() {
     packet_builder_destroy();
     PRIV->packet_builder = NULL;
-    free_frame(PRIV->last_recv_frame);
+    free_frame(&PRIV->last_recv_frame);
 }
 
 static inline void set_outgoing_eth_fields(PACKET_BUILDER* builder, uint8_t* dst_mac) {

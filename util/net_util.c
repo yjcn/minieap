@@ -16,6 +16,7 @@
 #ifdef __linux__
 #include <linux/netlink.h>
 #include <linux/rtnetlink.h>
+#include <linux/if_packet.h>
 #endif
 
 #ifdef __APPLE__
@@ -43,9 +44,15 @@ RESULT obtain_iface_mac(const char* ifname, uint8_t* adr_buf) {
     if_curr = ifaddrs;
     do {
         if (strcmp(if_curr->ifa_name, ifname) == 0) {
+#ifdef __linux
+            if (if_curr->ifa_addr->sa_family == AF_PACKET) {
+                memmove(adr_buf, ((struct sockaddr_ll*)if_curr->ifa_addr)->sll_addr, 6);
+            }
+#else
             if (if_curr->ifa_addr->sa_family == AF_LINK) {
                 memmove(adr_buf, LLADDR((struct sockaddr_dl*)if_curr->ifa_addr), 6);
             }
+#endif
         }
     } while ((if_curr = if_curr->ifa_next));
     freeifaddrs(ifaddrs);
