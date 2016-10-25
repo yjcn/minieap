@@ -1,10 +1,10 @@
-# Makefile for interface implementation: libpcap
+# Makefile for packet plugin: RJv3 authentication
 
 LOCAL_PATH := $(call my-dir)
 
 LOCAL_SRC_FILES := \
-    $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*.c)) \
-    $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/rjv3_hashes/*.c))
+    $(call all-c-files-under,.) \
+    $(call all-c-files-under,rjv3_hashes)
 LOCAL_C_INCLUDES := rjv3_hashes
 LOCAL_CFLAGS :=
 LOCAL_LDFLAGS :=

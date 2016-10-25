@@ -1,8 +1,8 @@
-# Makefile for interface implementation: libpcap
+# Makefile for utilities
 
 LOCAL_PATH := $(call my-dir)
 
-LOCAL_SRC_FILES := $(filter-out ifaddrs.c, $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*.c)))
+LOCAL_SRC_FILES := $(filter-out ifaddrs.c, $(call all-c-files-under,.))
 LOCAL_C_INCLUDES :=
 LOCAL_CFLAGS :=
 LOCAL_LDFLAGS :=

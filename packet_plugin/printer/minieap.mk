@@ -1,4 +1,4 @@
-# Makefile for interface implementation: libpcap
+# Makefile for packet plugin: simple printer
 
 LOCAL_PATH := $(call my-dir)
 

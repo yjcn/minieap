@@ -29,5 +29,9 @@ define my-dir
 $(dir $(lastword $(MAKEFILE_LIST)))
 endef
 
+define all-c-files-under
+$(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/$(1)/*.c))
+endef
+
 MK_LIST := $(shell find . -name minieap.mk)
 include $(MK_LIST)

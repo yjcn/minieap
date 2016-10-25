@@ -1,4 +1,4 @@
-# Makefile for interface implementation: libpcap
+# Makefile for interface implementation: raw socket interface
 
 LOCAL_PATH := $(call my-dir)
 
