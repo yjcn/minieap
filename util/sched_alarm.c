@@ -82,8 +82,6 @@ void alarm_sig_handler(int sig) {
     PR_DBG("RING!");
     print_list(&g_alarm_list);
 #endif
-    /* Must be nearest one that fired the alarm */
-    int _curr_remaining = find_min_remaining(g_alarm_list);
 
     /* We need to avoid maniputing the alarm list during traverse,so
      * 1. Update all the remaining time fields before calling user func
@@ -105,7 +103,7 @@ void alarm_sig_handler(int sig) {
     /* Prepare for further new lists */
     g_alarm_list_add_temp = NULL;
 
-    _curr_remaining = find_min_remaining(g_alarm_list);
+    int _curr_remaining = find_min_remaining(g_alarm_list);
     set_alarm(_curr_remaining);
 
     g_ringing = FALSE;
